@@ -152,8 +152,8 @@
     <div class="timeline">
       <div class="timeline-item">
         <span class="year">2024 - Present</span>
-        <h3>ระดับการศึกษาปัจจุบัน</h3>
-        <p>ชื่อสถานศึกษา / สาขาวิชา</p>
+        <h3>มัธยมศึกษาปีที่6</h3>
+        <p>โรงเรียนธั / สาขาวิชา</p>
       </div>
 
       <div class="timeline-item">
