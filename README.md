@@ -1,261 +1,603 @@
-
 <!DOCTYPE html>
 <html lang="th">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="My Personal Portfolio">
-  <title>My Portfolio | Student</title>
 
-  <link rel="stylesheet" href="style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | วุฒิภัทร อินตะนัย</title>
+
+    <style>
+        /* ========================================
+           ตั้งค่าพื้นฐานของเว็บไซต์
+        ======================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            /* สีหลัก มจพ. */
+            --red: #AC3520;
+            --dark-red: #7F2415;
+            --light-red: #FBEDEA;
+            --black: #151515;
+            --white: #FFFFFF;
+            --gray: #666666;
+        }
+
+        body {
+            font-family: Arial, "Tahoma", sans-serif;
+            background: var(--white);
+            color: #222;
+            line-height: 1.6;
+        }
+
+        /* ========================================
+           Header / Navigation
+        ======================================== */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 8%;
+            background: rgba(255, 255, 255, 0.97);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.10);
+        }
+
+        /* โลโก้ + ชื่อเว็บไซต์ */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--red);
+        }
+
+        /* ช่องวงกลมสำหรับโลโก้ มจพ. ด้านบน Header */
+        .logo-box {
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            background: var(--light-red);
+            border: 2px solid #E8B8AD;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(172, 53, 32, 0.15);
+        }
+
+        .logo-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 4px;
+        }
+
+        /* Navigation */
+        nav ul {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--black);
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--red);
+        }
+
+        /* ========================================
+           Hero Section
+        ======================================== */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 50px 8%;
+            background: linear-gradient(135deg, #ffffff 50%, var(--light-red) 50%);
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .hero-logo {
+            width: 150px;
+            height: auto;
+            object-fit: contain;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 5px 12px rgba(172, 53, 32, 0.2));
+        }
+
+        .hero h1 {
+            font-size: 55px;
+            color: var(--black);
+            margin-bottom: 15px;
+        }
+
+        .hero h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .hero h2 span {
+            color: var(--red);
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--gray);
+            margin-bottom: 30px;
+        }
+
+        /* ========================================
+           ปุ่ม
+        ======================================== */
+        .btn {
+            display: inline-block;
+            padding: 13px 30px;
+            background: var(--red);
+            color: white;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: var(--dark-red);
+            transform: translateY(-3px);
+        }
+
+        /* ========================================
+           Section ทั่วไป
+        ======================================== */
+        section {
+            padding: 90px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--black);
+        }
+
+        .section-title p {
+            color: var(--gray);
+            margin-top: 8px;
+        }
+
+        /* ========================================
+           About Section
+        ======================================== */
+        .about {
+            max-width: 1000px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .profile-box {
+            width: 250px;
+            height: 250px;
+            margin: auto;
+            border-radius: 50%;
+            background: var(--light-red);
+            border: 8px solid #E8B8AD;
+            box-shadow: 0 8px 25px rgba(172, 53, 32, 0.15);
+            overflow: hidden;
+        }
+
+        .profile-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-text h3 {
+            font-size: 28px;
+            color: var(--red);
+            margin-bottom: 15px;
+        }
+
+        .about-text p {
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+
+        /* ========================================
+           Skills
+        ======================================== */
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill {
+            padding: 7px 15px;
+            background: var(--light-red);
+            color: var(--dark-red);
+            border: 1px solid #E8B8AD;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        /* ========================================
+           Projects Section
+        ======================================== */
+        .projects {
+            background: var(--light-red);
+        }
+
+        .project-container {
+            max-width: 1100px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            border-top: 4px solid var(--red);
+            transition: 0.3s;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(172, 53, 32, 0.15);
+        }
+
+        /* กรอบใส่รูปผลงาน */
+        .project-img {
+            width: 100%;
+            height: 180px;
+            background: #f5f5f5;
+            overflow: hidden;
+        }
+
+        .project-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.3s;
+        }
+
+        .project-card:hover .project-img img {
+            transform: scale(1.05);
+        }
+
+        /* ส่วนเนื้อหาภายในการ์ด */
+        .project-info {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .project-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            background: var(--light-red);
+            color: var(--red);
+            font-size: 22px;
+        }
+
+        .project-card h3 {
+            color: var(--black);
+            margin-bottom: 10px;
+        }
+
+        .project-card p {
+            color: var(--gray);
+            margin-bottom: 20px;
+            font-size: 14px;
+            flex-grow: 1;
+        }
+
+        .project-link {
+            color: var(--red);
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .project-link:hover {
+            color: var(--dark-red);
+        }
+
+        /* ========================================
+           Contact Section
+        ======================================== */
+        .contact {
+            text-align: center;
+        }
+
+        .contact-box {
+            max-width: 700px;
+            margin: auto;
+            padding: 40px;
+            background: var(--light-red);
+            border-radius: 20px;
+            border: 1px solid #E8B8AD;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .contact-box p {
+            margin: 15px 0;
+            font-size: 18px;
+        }
+
+        .contact-box a {
+            color: var(--red);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .contact-box a:hover {
+            color: var(--dark-red);
+        }
+
+        /* ========================================
+           Footer
+        ======================================== */
+        footer {
+            padding: 25px;
+            text-align: center;
+            background: var(--black);
+            color: white;
+        }
+
+        footer span {
+            color: #D96A55;
+        }
+
+        /* ========================================
+           Responsive สำหรับมือถือ
+        ======================================== */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 10px;
+                padding: 12px 5%;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .logo-box {
+                width: 50px;
+                height: 50px;
+            }
+
+            nav ul {
+                gap: 15px;
+                font-size: 14px;
+            }
+
+            .hero {
+                min-height: 85vh;
+                padding: 40px 5%;
+            }
+
+            .hero-logo {
+                width: 120px;
+            }
+
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .hero h2 {
+                font-size: 22px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .skills {
+                justify-content: center;
+            }
+
+            .project-container {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-box {
+                width: 200px;
+                height: 200px;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-  <header>
-    <nav class="navbar container">
-      <a href="#home" class="logo">My<span>Portfolio.</span></a>
-
-      <div class="menu-toggle" id="menu-toggle">
-        <i class="fas fa-bars"></i>
-      </div>
-
-      <ul class="nav-links" id="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#education">Education</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <!-- HOME -->
-  <section class="hero container" id="home">
-    <div class="hero-content">
-      <p class="welcome">WELCOME TO MY PORTFOLIO</p>
-
-      <h1>Hello, I'm <span>Student</span></h1>
-
-      <h2>I'm a <span class="typing">Creative Learner</span></h2>
-
-      <p class="hero-description">
-        สวัสดีครับ/ค่ะ ยินดีต้อนรับเข้าสู่ Portfolio ของฉัน
-        เว็บไซต์ที่รวบรวมประวัติส่วนตัว ทักษะ ความสามารถ
-        และผลงานที่ฉันภาคภูมิใจ
-      </p>
-
-      <div class="hero-buttons">
-        <a href="#projects" class="btn primary">View My Work</a>
-        <a href="#contact" class="btn secondary">Contact Me</a>
-      </div>
-
-      <div class="social-icons">
-        <a href="#"><i class="fab fa-facebook"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-github"></i></a>
-      </div>
-    </div>
-
-    <div class="hero-image">
-      <div class="image-glow"></div>
-      <img src="images/profile.jpg" alt="My Profile"
-           onerror="this.style.display='none'">
-      <div class="profile-placeholder">
-        <i class="fas fa-user-graduate"></i>
-        <span>YOUR PHOTO</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section class="section container" id="about">
-    <div class="section-title">
-      <span>INTRODUCTION</span>
-      <h2>About <span>Me</span></h2>
-    </div>
-
-    <div class="about-content">
-      <div class="about-card">
-        <i class="fas fa-user"></i>
-        <h3>Personal Information</h3>
-        <p>ชื่อ: ชื่อ-นามสกุลของคุณ</p>
-        <p>ชื่อเล่น: ชื่อเล่น</p>
-        <p>อายุ: XX ปี</p>
-        <p>สถานะ: Student</p>
-      </div>
-
-      <div class="about-text">
-        <h3>Who Am I?</h3>
-        <p>
-          ฉันเป็นนักเรียน/นักศึกษาที่มีความสนใจด้านเทคโนโลยี
-          การออกแบบเว็บไซต์ และการเขียนโปรแกรม
-          ชอบเรียนรู้สิ่งใหม่ ๆ และพัฒนาความสามารถของตนเองอยู่เสมอ
-        </p>
-        <p>
-          My goal is to improve my skills,
-          explore new technologies and create
-          something meaningful.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- SKILLS -->
-  <section class="section container" id="skills">
-    <div class="section-title">
-      <span>WHAT I CAN DO</span>
-      <h2>My <span>Skills</span></h2>
-    </div>
-
-    <div class="skills-grid">
-      <div class="skill-card">
-        <i class="fab fa-html5"></i>
-        <h3>HTML</h3>
-        <div class="progress"><span style="width:85%"></span></div>
-        <p>85%</p>
-      </div>
-
-      <div class="skill-card">
-        <i class="fab fa-css3-alt"></i>
-        <h3>CSS</h3>
-        <div class="progress"><span style="width:75%"></span></div>
-        <p>75%</p>
-      </div>
-
-      <div class="skill-card">
-        <i class="fab fa-js"></i>
-        <h3>JavaScript</h3>
-        <div class="progress"><span style="width:60%"></span></div>
-        <p>60%</p>
-      </div>
-
-      <div class="skill-card">
-        <i class="fab fa-python"></i>
-        <h3>Python</h3>
-        <div class="progress"><span style="width:65%"></span></div>
-        <p>65%</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- EDUCATION -->
-  <section class="section container" id="education">
-    <div class="section-title">
-      <span>MY JOURNEY</span>
-      <h2>My <span>Education</span></h2>
-    </div>
-
-    <div class="timeline">
-      <div class="timeline-item">
-        <span class="year">2024 - Present</span>
-        <h3>มัธยมศึกษาปีที่6</h3>
-        <p>โรงเรียนธั / สาขาวิชา</p>
-      </div>
-
-      <div class="timeline-item">
-        <span class="year">2021 - 2024</span>
-        <h3>ระดับมัธยมศึกษา</h3>
-        <p>ชื่อโรงเรียน</p>
-      </div>
-
-      <div class="timeline-item">
-        <span class="year">2015 - 2021</span>
-        <h3>ระดับประถมศึกษา</h3>
-        <p>ชื่อโรงเรียน</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROJECTS -->
-  <section class="section container" id="projects">
-    <div class="section-title">
-      <span>MY RECENT WORK</span>
-      <h2>My <span>Projects</span></h2>
-    </div>
-
-    <div class="projects-grid">
-      <div class="project-card">
-        <div class="project-icon">
-          <i class="fas fa-laptop-code"></i>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <div class="logo-box">
+                <img src="https://www.kmutnb.ac.th/getattachment/about/symbols/logo_kmutnb-(1).png.aspx" alt="ตราประจำมหาวิทยาลัย มจพ.">
+            </div>
+            <span>My Portfolio</span>
         </div>
-        <div class="project-info">
-          <span>WEB DEVELOPMENT</span>
-          <h3>My First Website</h3>
-          <p>เว็บไซต์แนะนำตัวที่สร้างด้วย HTML และ CSS</p>
-          <a href="#" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
-        </div>
-      </div>
 
-      <div class="project-card">
-        <div class="project-icon">
-          <i class="fas fa-calculator"></i>
-        </div>
-        <div class="project-info">
-          <span>JAVASCRIPT</span>
-          <h3>Calculator App</h3>
-          <p>โปรแกรมเครื่องคิดเลขสำหรับการคำนวณ</p>
-          <a href="#" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
-        </div>
-      </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-      <div class="project-card">
-        <div class="project-icon">
-          <i class="fas fa-palette"></i>
-        </div>
-        <div class="project-info">
-          <span>DESIGN</span>
-          <h3>Creative Design</h3>
-          <p>ผลงานการออกแบบกราฟิกและ UI Design</p>
-          <a href="#" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
-        </div>
-      </div>
-    </div>
-  </section>
+    <main>
 
-  <!-- CONTACT -->
-  <section class="section container" id="contact">
-    <div class="section-title">
-      <span>GET IN TOUCH</span>
-      <h2>Contact <span>Me</span></h2>
-    </div>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <img src="https://www.kmutnb.ac.th/getattachment/about/symbols/logo_kmutnb-(1).png.aspx"
+                     alt="ตราประจำมหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ"
+                     class="hero-logo">
 
-    <div class="contact-content">
-      <h3>Let's Connect!</h3>
-      <p>หากสนใจผลงานหรืออยากพูดคุย สามารถติดต่อฉันได้ที่นี่</p>
+                <h1>Portfolio 👋</h1>
+                <h2>ผมชื่อ <span>วุฒิภัทร อินตะนัย</span></h2>
+                <p>
+                    วศ.บ. เทคโนโลยีวิศวกรรมแมคคาทรอนิกส์<br>
+                    (ภาษาไทย ปกติ) วิทยาเขตกรุงเทพฯ
+                </p>
+                <a href="#projects" class="btn">ดูผลงานของฉัน</a>
+            </div>
+        </section>
 
-      <div class="contact-item">
-        <i class="fas fa-envelope"></i>
-        <span>your@email.com</span>
-      </div>
+        <!-- About Section -->
+        <section id="about">
+            <div class="section-title">
+                <h2>About Me</h2>
+                <p>มาทำความรู้จักกับผมกัน</p>
+            </div>
 
-      <div class="contact-item">
-        <i class="fab fa-facebook"></i>
-        <span>Facebook: Your Name</span>
-      </div>
+            <div class="about">
+                <!-- อัปเดตรูปโปรไฟล์เป็นลิงก์ใหม่เรียบร้อยครับ -->
+                <div class="profile-box">
+                    <img src="https://lh3.googleusercontent.com/d/104wUAm3vcR89OvNfZCadx2bL-iKPvJRz=s1000" alt="รูปโปรไฟล์ วุฒิภัทร" onerror="this.src='https://via.placeholder.com/250?text=Profile'">
+                </div>
 
-      <div class="contact-item">
-        <i class="fab fa-instagram"></i>
-        <span>Instagram: @username</span>
-      </div>
+                <div class="about-text">
+                    <h3>เกี่ยวกับฉัน</h3>
+                    <p>
+                        ผมเป็นนักเรียนระดับมัธยมศึกษาตอนปลายจากโรงเรียนธัญรัตน์ ที่สนใจด้านเทคโนโลยีและการพัฒนาโปรแกรม
+                        ชอบเรียนรู้สิ่งใหม่ ๆ และนำความรู้ที่ได้มาสร้างเป็นผลงานและโครงงานต่าง ๆ
+                    </p>
+                    <p>
+                        เป้าหมายของผมคือ การพัฒนาทักษะและนำความรู้ไปต่อยอดในการศึกษาระดับมหาวิทยาลัย
+                        รวมถึงการสร้างนวัตกรรมที่สามารถนำไปใช้ได้จริงและนำมาใช้ในการประกอบอาชีพ
+                    </p>
 
-      <a href="mailto:your@email.com" class="btn primary">
-        Send Me an Email
-      </a>
-    </div>
-  </section>
+                    <div class="skills">
+                        <span class="skill">HTML</span>
+                        <span class="skill">CSS</span>
+                        <span class="skill">JavaScript</span>
+                        <span class="skill">Python</span>
+                        <span class="skill">IoT</span>
+                        <span class="skill">Arduino</span>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  <footer>
-    <p>© 2026 My Portfolio. Made with ❤️ by Student</p>
-  </footer>
+        <!-- Projects Section -->
+        <section id="projects" class="projects">
+            <div class="section-title">
+                <h2>My Projects</h2>
+                <p>ผลงานและโครงงานที่ผมเคยทำ</p>
+            </div>
 
-  <button id="back-to-top" aria-label="Back to top">
-    <i class="fas fa-arrow-up"></i>
-  </button>
+            <div class="project-container">
+               
+                <!-- Project 1 -->
+                <article class="project-card">
+                    <div class="project-img">
+                        <img src="https://lh3.googleusercontent.com/d/1CutGBjBLD2H5DSKK4lCgt4b5j5rGfU1y=s1000" alt="Portfolio Website" onerror="this.src='https://via.placeholder.com/400x250?text=Project+1'">
+                    </div>
+                    <div class="project-info">
+                        <div class="project-icon">💻</div>
+                        <h3>Kidbrigth onstage 2026</h3>
+                        <p>ทีม ของผมได้เข้ารอบ 10 ทีม สุดท้าย (ระดับประเทศ) ผมรับหน้าที่ทางด้าน หุ่นยนต์ครับ</p>
+                        <a href="https://drive.google.com/file/d/1CutGBjBLD2H5DSKK4lCgt4b5j5rGfU1y/view?usp=sharing" target="_blank" class="project-link">ดูรายละเอียด →</a>
+                    </div>
+                </article>
 
-  <script src="script.js"></script>
+                <!-- Project 2 -->
+                <article class="project-card">
+                    <div class="project-img">
+                        <img src="https://lh3.googleusercontent.com/d/1YAShPzSgTAx9DjCh7k1bD_DA8LD_MR7T=s1000" alt="IoT Project" onerror="this.src='https://via.placeholder.com/400x250?text=Project+2'">
+                    </div>
+                    <div class="project-info">
+                        <div class="project-icon">🤖</div>
+                        <h3>Depa coding thailand 2026</h3>
+                        <p>โครงงาน Internet of Things ที่ใช้เซนเซอร์ในการเก็บข้อมูล และนำข้อมูลมาแสดงผล</p>
+                        <a href="https://drive.google.com/file/d/1YAShPzSgTAx9DjCh7k1bD_DA8LD_MR7T/view?usp=sharing" target="_blank" class="project-link">ดูรายละเอียด →</a>
+                    </div>
+                </article>
+
+                <!-- Project 3 -->
+                <article class="project-card">
+                    <div class="project-img">
+                        <img src="./project3.jpg" alt="Programming Project" onerror="this.src='https://via.placeholder.com/400x250?text=Project+3'">
+                    </div>
+                    <div class="project-info">
+                        <div class="project-icon">⚙️</div>
+                        <h3>Prpject ส่วนตัว</h3>
+                        <p>โครงงานบ้านนก เพื่อจัดตั้ง ให้นกอยู่สุขสบาย</p>
+                        <a href="https://drive.google.com/file/d/11JMg8YledX0oAD3HgWgRmO0mdldR4apf/view?usp=sharing" class="project-link">ดูรายละเอียด →</a>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <div class="section-title">
+                <h2>Contact Me</h2>
+                <p>สามารถติดต่อผมได้ผ่านช่องทางเหล่านี้</p>
+            </div>
+
+            <div class="contact-box">
+                <p>📧 Email : <a href="mailto:your@email.com">your@email.com</a></p>
+                <p>📱 Instagram : <a href="#">@yourinstagram</a></p>
+                <p>💻 GitHub : <a href="#">github.com/yourusername</a></p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 My Portfolio | <span>วุฒิภัทร อินตะนัย</span></p>
+    </footer>
+
 </body>
+
 </html>
